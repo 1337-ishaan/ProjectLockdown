@@ -11,13 +11,19 @@ function App() {
   const [startDate, setStartDate] = useState(false);
   const [endDate, setEndDate] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState({ t: (text) => text });
-  // const [currentLanguage, setCurrentLanguage] = useState("en");
+  const [daysRange, setDaysRange] = useState(70);
 
   const __onSelectDate = (selectedDate, startDate, endDate) => {
     setHaveSelectedDate(selectedDate);
     setStartDate(startDate);
     setEndDate(endDate);
   };
+
+ const __closeDialog = () => {
+    this.setState({ dialog: { opened: false, template: '', title: '' } });
+    // debouncedCloseDialog();
+    // this.__closeCountryInfo();
+  }
   return (
     <>
       <LoadingAnimation isLoading={isLoading} />
@@ -31,6 +37,7 @@ function App() {
         i18n={currentLanguage}
         startDate={startDate}
         endDate={endDate}
+        daysRange={daysRange}
         // onClose={this.__closeDialog}
       />
     </>

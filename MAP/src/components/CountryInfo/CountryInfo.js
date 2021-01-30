@@ -6,8 +6,7 @@ import {
   // populationService,
   countryDetailService,
 } from "../../services/services";
-import _ from 'lodash';
-
+import _ from "lodash";
 
 import {
   home,
@@ -174,17 +173,30 @@ function createMeasures(apiMeasures) {
 
 const CountryInfo = (props) => {
   const [currentTab, setCurrentTab] = useState(1);
-  const [coronaData,setCoronaData] = useState(coronaTrackerService.getCountry({ iso2: props.iso2, date: props.date, 
-    startDate:props.startDate,
-    endDate:props.endDate, }));
-  const [countryDetails,setCountryDetails] = useState({iso2:props.iso2,date:props.date,startDate:props.date,endDate:props.endDate, daysRange:props.dayRange});
-  const [populationData,setPopulationData] = useState(countryDetailService.getDetails({
+  const [coronaData, setCoronaData] = useState(
+    coronaTrackerService.getCountry({
+      iso2: props.iso2,
+      date: props.date,
+      startDate: props.startDate,
+      endDate: props.endDate,
+    })
+  );
+  const [countryDetails, setCountryDetails] = useState({
     iso2: props.iso2,
     date: props.date,
-    startDate:props.startDate,
-    endDate:props.endDate,
-    daysRange:props.daysRange,
-  }),);
+    startDate: props.date,
+    endDate: props.endDate,
+    daysRange: props.dayRange,
+  });
+  const [populationData, setPopulationData] = useState(
+    countryDetailService.getDetails({
+      iso2: props.iso2,
+      date: props.date,
+      startDate: props.startDate,
+      endDate: props.endDate,
+      daysRange: props.daysRange,
+    })
+  );
 
   // async componentDidUpdate(prevProps) {
   //     if (this.props.date !== prevProps.date) {
@@ -262,7 +274,7 @@ const CountryInfo = (props) => {
   // }
 
   /** On error & on succes, continue to render */
-  console.log(populationData)
+  console.log(populationData);
   return (
     <>
       <div className={tabStyles}>
@@ -271,12 +283,13 @@ const CountryInfo = (props) => {
             onClick={() => changeTab(tab.id)}
             class={`tab ${currentTab === tab.id ? "active" : ""}`}
           >
-            tdo.tabs.${tab.name}.name
+            {/* tdo.tabs.{tab.name}.name */}
+            {tab.name}
 
             {/* {_.i18n.t(`tdo.tabs.${tab.name}.name`)} */}
           </div>
         ))}
-        <button >{closeIcon}</button>
+        <button>{closeIcon}</button>
       </div>
       <div class={`{countryInfo ${countryInfoStyles}}`}>
         {currentTab === 1 ? (
@@ -291,10 +304,10 @@ const CountryInfo = (props) => {
             i18n={i18n}
           />
         ) : currentTab === 2 ? (
-          <TransportDetails countryDetails={countryDetails} i18n={i18n} />
+          <TransportDetails countryDetails={countryDetails} />
         ) : (
           <>
-            <Reports i18n={i18n} />
+            <Reports />
             <div class="link-container">
               <a
                 class="ld-link"
@@ -307,7 +320,7 @@ const CountryInfo = (props) => {
                 }
                 target="_blank"
               >
-                {_.i18n.t(`tdo.contributionLinks.firstLink`)}
+                {/* {_.i18n.t(`tdo.contributionLinks.firstLink`)} */}
               </a>
               <a
                 class="ld-link"
@@ -320,7 +333,7 @@ const CountryInfo = (props) => {
                 }`}
                 target="_blank"
               >
-                {_.i18n.t(`tdo.contributionLinks.secondLink`)}
+                {/* {_.i18n.t(`tdo.contributionLinks.secondLink`)} */}
               </a>
               {/* <!-- <a class="ld-link" target="_blank" rel="noopener noreferrer" href="#" target="_blank">
             ${_.i18n.t(`tdo.contributionLinks.thirdLink`)}
@@ -358,7 +371,7 @@ const CountryDetails = (props) => {
           </dd>
         </div>
         <div class="data-entry is-third">
-          <dt>${i18n.t("tdo.tabs.dailyLife.stats.cases")}</dt>
+          {/* <dt>${i18n.t("tdo.tabs.dailyLife.stats.cases")}</dt> */}
           {/* <dd class="data-value">
             {coronaData?.total_confirmed
               ? Number(coronaData?.total_confirmed).toLocaleString()
@@ -386,7 +399,7 @@ const CountryDetails = (props) => {
       {countryDetails.status === "success" ? (
         <>
           <h2 class="ld-font-subheader last">
-            {i18n.t("tdo.tabs.dailyLife.subtitle")}
+            {/* {i18n.t("tdo.tabs.dailyLife.subtitle")} */}
           </h2>
           <ul class="measures">
             {createMeasures(countryDetails.measures).map((m) => (
@@ -400,7 +413,7 @@ const CountryDetails = (props) => {
                     {m.icon}
                   </div>
                   <span id={`measure-label-${m.id}`} class="measure-label">
-                    {i18n.t(`tdo.tabs.dailyLife.measures.${m.translationKey}`)}
+                    {/* {i18n.t(`tdo.tabs.dailyLife.measures.${m.translationKey}`)} */}
                   </span>
                 </div>
               </li>
@@ -443,7 +456,6 @@ const TransportDetails = (props) => {
               return (
                 <div class="ld-travel">
                   <dt>
-                    
                     {/* {i18n.t(
                       `tdo.tabs.mobility.measures.${TRANSLATIONS[key].text}`
                     )} */}
@@ -473,25 +485,25 @@ const TransportDetails = (props) => {
 };
 
 const Legends = () => {
-  let {  tab } = _;
+  // let {  tab } = _;
   return (
     <div class="legend ld-font-legend">
       <dl>
         <div class="legend-item">
           <dt class="legend-green" aria-label="green"></dt>
-          <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.3`)}</dd>
+          {/* <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.3`)}</dd> */}
         </div>
         <div class="legend-item">
           <dt class="legend-yellow" aria-label="yellow"></dt>
-          <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.2`)}</dd>
+          {/* <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.2`)}</dd> */}
         </div>
         <div class="legend-item">
           <dt class="legend-red" aria-label="red"></dt>
-          <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.1`)}</dd>
+          {/* <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.1`)}</dd> */}
         </div>
         <div class="legend-item">
           <dt class="legend-gray" aria-label="gray"></dt>
-          <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.4`)}</dd>
+          {/* <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.4`)}</dd> */}
         </div>
       </dl>
     </div>
@@ -499,10 +511,10 @@ const Legends = () => {
 };
 
 const Reports = () => {
-  let { i18n } = _;
+  // let { i18n } = _;
   return (
     <div className={`${reports}`}>
-      <h3>{i18n.t(`tdo.tabs.reports.subtitle`)}</h3>
+      {/* <h3>{i18n.t(`tdo.tabs.reports.subtitle`)}</h3> */}
       <div className="placeholder"></div>
     </div>
   );

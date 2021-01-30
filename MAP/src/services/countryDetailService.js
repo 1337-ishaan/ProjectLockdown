@@ -17,6 +17,7 @@ class CountryDetailService extends EventTargetShim {
     let endDate = opts.endDate;
     iso2 = encodeURI(iso2);
 
+    console.log(opts)
     startDate = startDate ? format(startDate, 'yyyy-MM-dd') : format(addDays(new Date(), -14), 'yyyy-MM-dd');
     endDate = endDate ? format(endDate, 'yyyy-MM-dd') : format(addDays(new Date(), daysRange), 'yyyy-MM-dd');
 
@@ -47,22 +48,22 @@ class CountryDetailService extends EventTargetShim {
     var dateFormatted = format(date, 'yyyy-MM-dd');
 
     var res = data[dateFormatted];
-    for (const type of ['land', 'flight', 'sea']) {
-      for (const { label, value } of res.lockdown[type]) {
-        if (Array.isArray(travel[label])) {
-          travel[label].push(value);
-        } else {
-          travel[label] = [value];
-        }
-      }
-    }
+    // for (const type of ['land', 'flight', 'sea']) {
+    //   for (const { label, value } of res.lockdown[type]) {
+    //     if (Array.isArray(travel[label])) {
+    //       travel[label].push(value);
+    //     } else {
+    //       travel[label] = [value];
+        // }
+    //   }
+    // }
 
     var result = {
       status: 'success',
-      date: res.lockdown.date,
-      measures: res.lockdown.measure,
+      // date: res.lockdown.date,
+      // measures: res.lockdown.measure,
       travel,
-      max_gathering: res.lockdown.max_gathering[0].value,
+      // max_gathering: res.lockdown.max_gathering[0].value,
     };
     this.__lastUpdate = Date.now();
     this.dispatchEvent(new Event('change'));
