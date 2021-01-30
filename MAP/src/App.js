@@ -13,33 +13,41 @@ function App() {
   const [currentLanguage, setCurrentLanguage] = useState({ t: (text) => text });
   const [daysRange, setDaysRange] = useState(70);
 
+  const [dialog, setDialog] = useState({
+    opened: false,
+    template: "",
+    title: "",
+  });
   const __onSelectDate = (selectedDate, startDate, endDate) => {
     setHaveSelectedDate(selectedDate);
     setStartDate(startDate);
     setEndDate(endDate);
   };
 
- const __closeDialog = () => {
-    this.setState({ dialog: { opened: false, template: '', title: '' } });
+  const __closeDialog = () => {
+    setDialog({ dialog: { opened: false, template: "", title: "" } });
     // debouncedCloseDialog();
     // this.__closeCountryInfo();
-  }
+  };
   return (
     <>
       <LoadingAnimation isLoading={isLoading} />
       <Map setIsLoading={setIsLoading}></Map>
-      <TimeSlider onChange={__onSelectDate} i18n={currentLanguage} />
-      <CountryInfo
-        country="India"
-        iso2="EN"
-        wikidata=''
-        date={haveSelectedDate || new Date()}
-        i18n={currentLanguage}
-        startDate={startDate}
-        endDate={endDate}
-        daysRange={daysRange}
-        // onClose={this.__closeDialog}
-      />
+      {/* {dialog ? ( */}
+        <TimeSlider onChange={__onSelectDate} i18n={currentLanguage} />
+      // ) : (
+        <CountryInfo
+          country="India"
+          iso2="EN"
+          wikidata=""
+          date={haveSelectedDate || new Date()}
+          i18n={currentLanguage}
+          startDate={startDate}
+          endDate={endDate}
+          daysRange={daysRange}
+          onClose={__closeDialog}
+        />
+      {/* )} */}
     </>
   );
 }

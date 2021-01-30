@@ -48,22 +48,23 @@ class CountryDetailService extends EventTargetShim {
     var dateFormatted = format(date, 'yyyy-MM-dd');
 
     var res = data[dateFormatted];
-    // for (const type of ['land', 'flight', 'sea']) {
-    //   for (const { label, value } of res.lockdown[type]) {
-    //     if (Array.isArray(travel[label])) {
-    //       travel[label].push(value);
-    //     } else {
-    //       travel[label] = [value];
-        // }
-    //   }
-    // }
+    console.log(res)
+    for (const type of ['land', 'flight', 'sea']) {
+      for (const { label, value } of res.lockdown[type]) {
+        if (Array.isArray(travel[label])) {
+          travel[label].push(value);
+        } else {
+          travel[label] = [value];
+        }
+      }
+    }
 
     var result = {
       status: 'success',
-      // date: res.lockdown.date,
-      // measures: res.lockdown.measure,
+      date: date,
+      measures: res.lockdown.measure,
       travel,
-      // max_gathering: res.lockdown.max_gathering[0].value,
+      max_gathering:  res.lockdown.max_gathering[0].value && res.lockdown.max_gathering[0].value,
     };
     this.__lastUpdate = Date.now();
     this.dispatchEvent(new Event('change'));

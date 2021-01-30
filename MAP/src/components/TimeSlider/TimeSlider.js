@@ -6,11 +6,12 @@ import format from "date-fns/format";
 import addDays from "date-fns/addDays";
 import { enUS } from "date-fns/locale";
 
+
 const sliderWrapper = css`
   & {
     position: absolute;
     bottom: 30px;
-    left: 20px;
+    left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
@@ -27,6 +28,7 @@ const sliderWrapper = css`
     max-height: 70px;
     &.open {
       max-height: calc(100vh - 110px);
+      height: 600px;
       transition: max-height 0.25s ease-in;
       @media (max-width: 960px) {
         /*max-height: calc(100vh - 45px);*/
@@ -645,6 +647,7 @@ const TimeSlider = (props) => {
       currentSliderRange[currentSliderRange.length - 1]
     );
   };
+  console.log(props,"props in timeslider")
   return (
     <div
       class={`sliderWrapper ${sliderWrapper} ${
