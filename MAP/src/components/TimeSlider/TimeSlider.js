@@ -347,7 +347,7 @@ const sliderSelector = css`
       padding: 0;
     }
     top: -33px;
-    left: 24.5%;
+    left: 50%;
     z-index: 999;
     width: fit-content;
     transform: translate(-24.5%, 0);
@@ -434,9 +434,7 @@ const popBtn = css`
 `;
 
 const firstDayDefaultOffset = 7 * 5;
-
 const desktopRange = 80;
-
 const mobileRange = 70;
 
 const widthSpaces = [7.5, 16, 24.5, 33, 41.5, 50, 58.5, 67, 75.5, 84, 94];
@@ -512,19 +510,19 @@ const TimeSlider = (props) => {
     });
   };
 
-  // useEffect(() => {
-  //   return () => {
-  //     let width = window.innerWidth || window.clientWidth;
-  //     let isMobileWidth = false;
-  //     let daysRangeCount = 80;
-  //     if (width <= 960) {
-  //       isMobileWidth = true;
-  //       daysRangeCount = 70;
-  //     }
-  //     setIsMobile(isMobileWidth);
-  //     setDaysRange(daysRangeCount);
-  //   };
-  // });
+  useEffect(() => {
+    return () => {
+      let width = window.innerWidth || window.clientWidth;
+      let isMobileWidth = false;
+      let daysRangeCount = 80;
+      if (width <= 960) {
+        isMobileWidth = true;
+        daysRangeCount = 70;
+      }
+      setIsMobile(isMobileWidth);
+      setDaysRange(daysRangeCount);
+    };
+  });
 
   const onPressKey = (e) => {
     let inputRange = range.current;
@@ -556,8 +554,8 @@ const TimeSlider = (props) => {
     let finalWidth = basicWidth / 2 - sliderDOM.offsetWidth / 4;
     let stepsWidth = rangeDOM.offsetWidth / currentRange;
     let newPosition = widthSpaces[newValue];
-    sliderDOM.style.left = `${finalWidth + stepsWidth * newValue + 120}px`;
-    // sliderDOM.style.transform = `translate(-${finalWidth + stepsWidth * (newValue+1)}px, 0)`;
+    sliderDOM.style.left = `${finalWidth +( stepsWidth * newValue)+112}px`;
+    // sliderDOM.style.transform = `translate(${finalWidth + stepsWidth * (newValue+1)}px, 0)`;
     setCurrentDateValue(newValue);
     setCurrentPosition(newPosition);
     setCurrentSelectedDay(
@@ -577,7 +575,7 @@ const TimeSlider = (props) => {
     let finalWidth = basicWidth / 2 - sliderDOM.offsetWidth / 4;
     let stepsWidth = rangeDOM.offsetWidth / currentRange;
     sliderDOM.style.left = `${
-      finalWidth +
+      finalWidth +112+
       stepsWidth *
         ((datePickerPosition === "left" ? 0 : currentRange - 1) + 0.5)
     }px`;
@@ -689,9 +687,7 @@ const TimeSlider = (props) => {
           step="1"
           value={currentDateValue}
         />
-        {/* <!-- <span class="last ${popBtn}"></span> --> */}
         <span title="Select End Date" className={`last ${tooltipCss}`}>
-          {" "}
           {lastDay}
         </span>
       </div>
@@ -700,7 +696,7 @@ const TimeSlider = (props) => {
 };
 
 const IconBtn = () => {
-  return <span> {calendar} </span>;
+  return <span>{calendar}</span>;
 };
 
 export default TimeSlider;
