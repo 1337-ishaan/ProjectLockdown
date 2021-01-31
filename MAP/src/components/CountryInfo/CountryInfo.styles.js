@@ -24,7 +24,7 @@ export const tabStyles = css`
       }
       .dark & {
         position: absolute !important;
-        color: var(--ld-gray-5);
+        color: gray;
         background-color: transparent;
         padding: 0px;
         top: 10px;
@@ -47,7 +47,7 @@ export const tabStyles = css`
       text-align: center;
       padding: 5px;
       color: var(--ld-gray-3);
-      border: var(--ld-gray-5) 1px solid;
+      border: gray 1px solid;
       border-top: 0px;
       transition: 0.5s;
       display: flex;
@@ -58,7 +58,7 @@ export const tabStyles = css`
       letter-spacing:.5px;
       .dark & {
         background-color: var(--ld-gray-2);
-        color: var(--ld-gray-5);
+        color: gray;
         border: var(--ld-gray-3) 1px solid;
       }
       &:hover{
@@ -132,13 +132,15 @@ export const countryInfoStyles = css`
     }
   }
   & {
-    background-color: var(--ld-bg);
+    // background-color: var(--ld-bg);
+    background-color: white !important;
+
     color: var(--ld-text);
     padding: 20px 30px 30px 30px;
       @media (max-width: 960px) {
         padding: 5px 15px 15px 15px !important;
       }
-    width: 100%;
+    // width: 100%;
     overflow-y: auto;
     &::-webkit-scrollbar {
       padding-left: 1.5%;
@@ -193,11 +195,11 @@ export const countryInfoStyles = css`
     &.last {
       padding: 0px;
       padding-top: 8px;
-      border-top: 1px solid var(--ld-gray-5);
+      border-top: 1px solid #e0e0e0;
       border-bottom: 0px;
       margin-top:7px;
       .dark &{
-        border-top: 1px solid var(--ld-gray-2);
+        border-top: 1px solid #e0e0e0;
       }
       &.transport {
         margin-bottom: -20px;
@@ -212,10 +214,10 @@ export const countryInfoStyles = css`
     font-variant-numeric: tabular-nums;
     margin-bottom: 7px;
     padding-bottom: 7px;
-    border-bottom: 1px solid var(--ld-gray-5);
+    border-bottom: 1px solid #e0e0e0;
     width: 100%;
     .dark &{
-      border-bottom 1px solid var(--ld-gray-2);
+      border-bottom:1px solid #e0e0e0;
     }
     &.is-half {
       width: 50%;
@@ -225,6 +227,7 @@ export const countryInfoStyles = css`
     }
   }
   .data-entry dt {
+    text-align:left;
     font-size: 12px;
     font-weight: 400;
   }
@@ -259,16 +262,16 @@ export const countryInfoStyles = css`
     }
   }
   .legend-green {
-    background-color: var(--ld-green-1);
+    background-color: #93c47d;
   }
   .legend-yellow {
-    background-color: var(--ld-yellow-1);
+    background-color: #f6b26b;
   }
   .legend-red {
-    background-color: var(--ld-red-1);
+    background-color: red;
   }
   .legend-gray {
-    background-color: var(--ld-gray-3);
+    background-color: gray;
   }
   .measures {
     display: grid;
@@ -318,16 +321,16 @@ export const countryInfoStyles = css`
     opacity: 1;
   }
   .measure-YES {
-    fill: var(--ld-green-1);
+    fill: #93c47d;
   }
   .measure-PARTIAL {
-    fill: var(--ld-yellow-1);
+    fill: #f6b26b;
   }
   .measure-NO {
-    fill: var(--ld-red-1);
+    fill: red;
   }
   .measure-UNCLEAR {
-    fill: var(--ld-gray-3);
+    fill: gray;
   }
   .ld-travel {
     display: flex;
@@ -352,20 +355,20 @@ export const countryInfoStyles = css`
     fill: var(--ld-text);
   }
   .ld-travel--val-YES {
-    background-color: var(--ld-green-1);
+    background-color: #93c47d;
   }
   .ld-travel--val-PARTIALLY {
-    background-color: var(--ld-yellow-1);
+    background-color: #f6b26b;
   }
   .ld-travel--val-NO {
-    background-color: var(--ld-red-1);
+    background-color: red;
   }
   .ld-travel--val-UNCLEAR {
-    background-color: var(--ld-gray-3);
+    background-color: gray;
   }
   .ld-travel--val-NA {
     /* TODO: What to color NA? */
-    background-color: var(--ld-gray-3);
+    background-color: gray;
   }
   .sr-only {
     clip: rect(1px, 1px, 1px, 1px);

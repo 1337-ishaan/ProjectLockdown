@@ -1,5 +1,6 @@
 import format from "date-fns/format";
 import isSameDay from "date-fns/isSameDay";
+import css from "csz";
 
 import {
   coronaTrackerService,
@@ -89,60 +90,70 @@ const MEASURES = [
     label: "Stay Home",
     translationKey: "home",
     icon: home,
+    value: "PARTIAL",
   },
   {
     id: "going_to_shops",
     label: "Shopping",
     translationKey: "shopping",
     icon: shops,
+    value: "PARTIAL",
   },
   {
     id: "city_movement_restriction",
     label: "Outdoors",
     translationKey: "outdoors",
     icon: citymovement,
+    value: "PARTIAL",
   },
   {
     id: "military_not_deployed",
     label: "Military",
     translationKey: "military",
     icon: military,
+    value: "UNCLEAR",
   },
   {
     id: "attending_religious_sites",
     label: "Religious Sites",
     translationKey: "religious",
     icon: religion,
+    value: "UNCLEAR",
   },
   {
     id: "electricity_nominal",
     label: "Electricity",
     translationKey: "electricity",
     icon: electricity,
+    value: "UNCLEAR",
   },
   {
     id: "going_to_work",
     label: "Go to Work",
     translationKey: "work",
     icon: work,
+    value: "PARTIAL",
   },
   {
     id: "water_nominal",
-    label: "Water",
+    label: "Water ensured",
     translationKey: "water",
     icon: water,
+    value: "UNCLEAR",
   },
   {
     id: "academia_allowed",
     label: "Go to Schools",
     translationKey: "schools",
     icon: academia,
+    value: "YES",
   },
   {
     id: "internet_nominal",
-    label: "Telecom",
+    label: "Telecom ensured",
     translationKey: "internet",
     icon: internet,
+    value: "UNCLEAR",
   },
 ];
 
@@ -169,7 +180,7 @@ function createMeasures(apiMeasures) {
   //     ...measure,
   //     value: MEASURE_VALUES[apiData.value] ?? MEASURE_VALUES[4],
   //   };
-console.log("createMeasures function")
+  console.log("createMeasures function");
   // });
 }
 
@@ -225,7 +236,7 @@ console.log("createMeasures function")
 
 const CountryInfo = (props) => {
   const [currentTab, setCurrentTab] = useState(1);
-  const {i18n} = props;
+  const { i18n } = props;
   const [coronaData, setCoronaData] = useState(
     coronaTrackerService.getCountry({
       iso2: props.iso2,
@@ -243,16 +254,15 @@ const CountryInfo = (props) => {
   });
   const [populationData, setPopulationData] = useState(
     // countryDetailService.getDetails({
-   {
-        iso2: props.iso2,
+    {
+      iso2: props.iso2,
       date: props.date,
       startDate: props.startDate,
       endDate: props.endDate,
       daysRange: props.daysRange,
-  }
-      // })
+    }
+    // })
   );
-
   // async componentDidUpdate(prevProps) {
   //     if (this.props.date !== prevProps.date) {
   //       const { startDate, endDate, daysRange } = this.props;
@@ -361,7 +371,7 @@ const CountryInfo = (props) => {
           <TransportDetails i18n={i18n} countryDetails={countryDetails} />
         ) : (
           <>
-            <Reports i18n={i18n}/>
+            <Reports i18n={i18n} />
             <div class="link-container">
               <a
                 class="ld-link"
@@ -406,76 +416,81 @@ const CountryDetails = (props) => {
   return (
     <>
       <h2 class="ld-font-subheader">
-        <span>{country}</span> <span>{format(date, "dd/MM/yyyy")}</span>
+        <span>India</span> <span>{format(date, "dd/MM/yyyy")}</span>
       </h2>
       <dl class="data">
         <div class="data-entry is-half">
-          <dt>{i18n.t("tdo.tabs.dailyLife.stats.population")}</dt>
+          <dt>{i18n.t("Population")}</dt>
           <dd class="data-value">
-            {!isNaN(Number(populationData?.Population))
+          1,352,617,328
+            {/* {!isNaN(Number(populationData?.Population))
               ? Number(populationData?.Population).toLocaleString() ?? "Error"
-              : i18n.t("tdo.tabs.dailyLife.noResults")}
+              : i18n.t("tdo.tabs.dailyLife.noResults")} */}
           </dd>
         </div>
         <div class="data-entry is-half">
-          <dt>{i18n.t("tdo.tabs.dailyLife.stats.max_assembly")}</dt>
+          <dt>{i18n.t("Maximum assembly")}</dt>
           <dd class="data-value">
-            {countryDetails?.max_gathering ??
-              i18n.t("tdo.tabs.dailyLife.noResults")}
+          N/A
+            {/* {countryDetails?.max_gathering ??
+              i18n.t("tdo.tabs.dailyLife.noResults")} */}
           </dd>
         </div>
         <div class="data-entry is-third">
-          <dt>{i18n.t("tdo.tabs.dailyLife.stats.cases")}</dt>
+          <dt>{i18n.t("Cases")}</dt>
           <dd class="data-value">
-            {coronaData?.total_confirmed
+          10,747,091
+            {/* {coronaData?.total_confirmed
               ? Number(coronaData?.total_confirmed).toLocaleString()
-              : i18n.t("tdo.tabs.dailyLife.noResults")}
+              : i18n.t("tdo.tabs.dailyLife.noResults")} */}
           </dd>
         </div>
         <div class="data-entry is-third">
-          <dt>{i18n.t("tdo.tabs.dailyLife.stats.recoveries")}</dt>
+          <dt>{i18n.t("Recoveries")}</dt>
           <dd class="data-value">
-            {coronaData?.total_recovered
+          10,423,125
+            {/* {coronaData?.total_recovered
               ? Number(coronaData?.total_recovered).toLocaleString()
-              : i18n.t("tdo.tabs.dailyLife.noResults")}
+              : i18n.t("tdo.tabs.dailyLife.noResults")} */}
           </dd>
         </div>
         <div class="data-entry is-third">
-          <dt>${i18n.t("tdo.tabs.dailyLife.stats.deaths")}</dt>
+          <dt>{i18n.t("Deaths")}</dt>
           <dd class="data-value">
-            {coronaData?.total_deaths
+          154,312
+            {/* {coronaData?.total_deaths
               ? Number(coronaData?.total_deaths).toLocaleString()
-              : i18n.t("tdo.tabs.dailyLife.noResults")}
+              : i18n.t("tdo.tabs.dailyLife.noResults")} */}
           </dd>
         </div>
       </dl>
       <Legends i18n={i18n} tab="dailyLife" />
       {/* {countryDetails.status === "success" ? ( */}
-        <>
-          <h2 class="ld-font-subheader last">
-            {i18n.t("tdo.tabs.dailyLife.subtitle")}
-          </h2>
-          <ul class="measures">
-            {MEASURES.map((m) => (
-              <li>
-                <div class="measure-wrapper">
-                  <div
-                    aria-labelledby={`measure-label-${m.id}`}
-                    class={`measure measure-${m.value ? m.value:null}`}
-                    aria-label={`${m.value && m.value.toLowerCase()}`}
-                  >
-                    {m.icon}
-                  </div>
-                  <span id={`measure-label-${m.id}`} class="measure-label">
-                  {/* {i18n.t(`tdo.tabs.dailyLife.measures.${m.translationKey}`)} */}
-                    
-                    {i18n.t(`${m.label}`)}
-                  </span>
+      <>
+        <h2 class="ld-font-subheader last">
+          {i18n.t("Daily life (restrictions)")}
+        </h2>
+        <ul class="measures">
+          {MEASURES.map((m) => (
+            <li>
+              <div class="measure-wrapper">
+                <div
+                  aria-labelledby={`measure-label-${m.id}`}
+                  class={`measure measure-${m.value ? m.value : null}`}
+                  aria-label={`${m.value && m.value.toLowerCase()}`}
+                >
+                  {m.icon}
                 </div>
-              </li>
-            ))}
-          </ul>
-        </>
+                <span id={`measure-label-${m.id}`} class="measure-label">
+                  {/* {i18n.t(`tdo.tabs.dailyLife.measures.${m.translationKey}`)} */}
+
+                  {i18n.t(`${m.label}`)}
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </>
       {/* ) : (
         <div class="dialog">
           <h2>Measures</h2>
@@ -486,86 +501,94 @@ const CountryDetails = (props) => {
   );
 };
 const TransportDetails = (props) => {
-  let { countryDetails,  i18n } = props;
+  let { countryDetails, i18n } = props;
   return (
     <>
+      {/* hey  */}
       {/* {countryDetails.status === "success" ? ( */}
-        <>
-          <br />
-          <br />
-          <Legends i18n={i18n} tab="mobility" />
-          <h2 class="ld-font-subheader last transport">
-            {i18n.t("tdo.tabs.mobility.subtitle")}
-          </h2>
-          <dl>
+      {/* <> */}
+      <br />
+      <br />
+      <Legends i18n={i18n} tab="mobility" />
+      <h2 class="ld-font-subheader last transport">
+        {/* {i18n.t("tdo.tabs.mobility.subtitle")}
+         */}
+        Transport Restrictions
+      </h2>
+      <dl>
+        <div class="ld-travel">
+          <dt></dt>
+          <div class="ld-travel--values">
+            <dd class="ld-travel--val-icon">{travelLand}</dd>
+            <dd class="ld-travel--val-icon">{travelFlight}</dd>
+            <dd class="ld-travel--val-icon">{travelSea}</dd>
+          </div>
+        </div>
+        {Object.keys(TRAVEL).map((key, j) => {
+          console.log(key)
+          return (
             <div class="ld-travel">
-              <dt></dt>
-              <div class="ld-travel--values">
-                <dd class="ld-travel--val-icon">{travelLand}</dd>
-                <dd class="ld-travel--val-icon">{travelFlight}</dd>
-                <dd class="ld-travel--val-icon">{travelSea}</dd>
-              </div>
-            </div>
-            {Object.keys(TRAVEL).map((key, j) => {
-              console.log(TRAVEL, key, "travel key")
-              return (
-                <div class="ld-travel">
-                  <dt>
-                    {/* {i18n.t(
+              <dt>
+                {/* {i18n.t(
                       `tdo.tabs.mobility.measures.${TRANSLATIONS[key].text}`
                     )} */}
-                    {i18n.t(
-                      `${TRANSLATIONS["commerce"].text}`
-                    )}
-                    
-                  </dt>
-                  <div class="ld-travel--values">
-                  {/* {TRAVEL[key].map((val, i) => ( */}
-                    {TRAVEL.map((val, i) => (
-                      <dd
-                        aria-label={`${TRAVELTYPE[i]}: ${TRAVEL[val]?.toLowerCase() ?? TRAVEL[4].toLowerCase()}`}
-                        data-tooltip={`${TRAVEL[val]?.toLowerCase() ?? TRAVEL[4].toLowerCase()}`}
-                        className={`ld-travel--symbol ld-travel--val-${TRAVEL[val] ?? TRAVEL[5]}`}
-                      ></dd>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </dl>
-        </>
+                {/* {i18n.t( */}
+                {TRANSLATIONS["commerce"].text}
+                {/* )} */}
+              </dt>
+              <div class="ld-travel--values">
+                {Object.keys(TRAVEL[key]).map((val, i) =>  (
+
+                  <dd
+                    aria-label={`${TRAVELTYPE[i]}: ${
+                      TRAVEL[val]?.toLowerCase() ?? TRAVEL[4].toLowerCase()
+                    }`}
+                    data-tooltip={`${
+                      TRAVEL[val]?.toLowerCase() ?? TRAVEL[4].toLowerCase()
+                    }`}
+                    className={`ld-travel--symbol ld-travel--val-${
+                      TRAVEL[val] ?? TRAVEL[5]
+                    }`}
+                  ></dd>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </dl>
+      {/* </> */}
       {/* ) : ( */}
-        {/* <div class="dialog">
+      {/* <div class="dialog">
           <h2>Measures</h2>
           Failed to get data for this country.
         </div> */}
-    {/* ) */}
-    {/* } */}
+      {/* ) */}
+      {/* } */}
     </>
   );
 };
 
 const Legends = (props) => {
-  console.log(props)
-  let { i18n,tab } = props;
+  console.log(props);
+  let { i18n, tab } = props;
   return (
     <div class="legend ld-font-legend">
       <dl>
         <div class="legend-item">
           <dt class="legend-green" aria-label="green"></dt>
-          <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.3`)}</dd>
+          <dd>{i18n.t(MEASURE_VALUES[1])}</dd>
         </div>
         <div class="legend-item">
           <dt class="legend-yellow" aria-label="yellow"></dt>
-          <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.2`)}</dd>
+          <dd>{i18n.t(MEASURE_VALUES[2])}</dd>
         </div>
         <div class="legend-item">
           <dt class="legend-red" aria-label="red"></dt>
-          <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.1`)}</dd>
+          <dd>{i18n.t(MEASURE_VALUES[3])}</dd>
         </div>
         <div class="legend-item">
           <dt class="legend-gray" aria-label="gray"></dt>
-          <dd>{i18n.t(`tdo.tabs.${tab}.measureValues.4`)}</dd>
+          <dd>{i18n.t(MEASURE_VALUES[4])}</dd>
         </div>
       </dl>
     </div>

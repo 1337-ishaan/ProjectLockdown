@@ -107,7 +107,7 @@ const selectStyles = css`
     border-radius: 25px;
     background-color: white;
     display: flex;
-    width: 100%;
+    // width: 100%;
     position: relative;
     justify-content: center;
     align-items: center;
@@ -165,7 +165,7 @@ const rangeStyles = css`
   input {
     background: transparent;
   }
-  input[type="range"] {
+  input[type='range'] {
     position: relative;
     -webkit-appearance: none;
     width: 100%;
@@ -176,11 +176,11 @@ const rangeStyles = css`
       color: #4f4f4f;
     }
   }
-  input[type="range"]:focus {
+  input[type='range']:focus {
     outline: none;
     box-shadow: 0 0 0px 0px var(--ld-focus) !important;
   }
-  input[type="range"]::-webkit-slider-runnable-track {
+  input[type='range']::-webkit-slider-runnable-track {
     width: 100%;
     height: 3px;
     cursor: pointer;
@@ -191,7 +191,7 @@ const rangeStyles = css`
     border-radius: 0px;
     border: 0px solid rgba(1, 1, 1, 0);
   }
-  input[type="range"]::-webkit-slider-thumb {
+  input[type='range']::-webkit-slider-thumb {
     -webkit-box-shadow: 0px 1px 5px 2.5px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 0px 1px 5px 2.5px rgba(0, 0, 0, 0.45);
     box-shadow: 0px 1px 5px 2.5px rgba(0, 0, 0, 0.45);
@@ -208,17 +208,17 @@ const rangeStyles = css`
       background: #ffffff;
     }
     &::before {
-      content: "Say Cheese";
+      content: 'Say Cheese';
       color: red;
     }
   }
-  input[type="range"]:focus::-webkit-slider-runnable-track {
+  input[type='range']:focus::-webkit-slider-runnable-track {
     background: #bdbdbd;
     .dark & {
       background: #828282;
     }
   }
-  input[type="range"]::-moz-range-track {
+  input[type='range']::-moz-range-track {
     width: 100%;
     height: 3px;
     cursor: pointer;
@@ -229,7 +229,7 @@ const rangeStyles = css`
     border-radius: 0px;
     border: 0px solid rgba(1, 1, 1, 0);
   }
-  input[type="range"]::-moz-range-thumb {
+  input[type='range']::-moz-range-thumb {
     -webkit-box-shadow: 0px 1px 5px 2.5px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 0px 1px 5px 2.5px rgba(0, 0, 0, 0.45);
     box-shadow: 0px 1px 5px 2.5px rgba(0, 0, 0, 0.45);
@@ -244,7 +244,7 @@ const rangeStyles = css`
     }
     cursor: pointer;
   }
-  input[type="range"]::-ms-track {
+  input[type='range']::-ms-track {
     width: 100%;
     height: 3px;
     cursor: pointer;
@@ -252,12 +252,12 @@ const rangeStyles = css`
     border-color: transparent;
     color: transparent;
   }
-  input[type="range"]::-ms-fill-lower {
+  input[type='range']::-ms-fill-lower {
     background: #bcbcbc;
     border: 0px solid rgba(1, 1, 1, 0);
     border-radius: 0px;
   }
-  input[type="range"]::-ms-fill-upper {
+  input[type='range']::-ms-fill-upper {
     background: #e0e0e0;
     .dark & {
       background: #4f4f4f;
@@ -265,7 +265,7 @@ const rangeStyles = css`
     border: 0px solid rgba(1, 1, 1, 0);
     border-radius: 0px;
   }
-  input[type="range"]::-ms-thumb {
+  input[type='range']::-ms-thumb {
     -webkit-box-shadow: 0px 1px 5px 2.5px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 0px 1px 5px 2.5px rgba(0, 0, 0, 0.45);
     box-shadow: 0px 1px 5px 2.5px rgba(0, 0, 0, 0.45);
@@ -281,13 +281,13 @@ const rangeStyles = css`
     cursor: pointer;
     height: 6.8px;
   }
-  input[type="range"]:focus::-ms-fill-lower {
+  input[type='range']:focus::-ms-fill-lower {
     background: #e0e0e0;
     .dark & {
       background: #4f4f4f;
     }
   }
-  input[type="range"]:focus::-ms-fill-upper {
+  input[type='range']:focus::-ms-fill-upper {
     background: #d6d6d6;
   }
 `;
@@ -556,7 +556,7 @@ const TimeSlider = (props) => {
     let finalWidth = basicWidth / 2 - sliderDOM.offsetWidth / 4;
     let stepsWidth = rangeDOM.offsetWidth / currentRange;
     let newPosition = widthSpaces[newValue];
-    sliderDOM.style.left = `${finalWidth +( stepsWidth * newValue)+112}px`;
+    sliderDOM.style.left = `${finalWidth +( stepsWidth * newValue)}px`;
     // sliderDOM.style.transform = `translate(${finalWidth + stepsWidth * (newValue+1)}px, 0)`;
     setCurrentDateValue(newValue);
     setCurrentPosition(newPosition);
@@ -577,7 +577,7 @@ const TimeSlider = (props) => {
     let finalWidth = basicWidth / 2 - sliderDOM.offsetWidth / 4;
     let stepsWidth = rangeDOM.offsetWidth / currentRange;
     sliderDOM.style.left = `${
-      finalWidth +112+
+      finalWidth +
       stepsWidth *
         ((datePickerPosition === "left" ? 0 : currentRange - 1) + 0.5)
     }px`;

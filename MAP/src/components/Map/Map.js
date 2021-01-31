@@ -27,8 +27,7 @@ export class Map extends React.Component {
 
     map.on('load', () => this.props.setIsLoading(false));
   }
-
   render() {
-    return <div id="map" className="map-container"></div>;
+    return <div id="map" onClick={this.props.onOpen} className="map-container"></div>;
   }
 }
