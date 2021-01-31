@@ -59,28 +59,28 @@ const TRAVELTYPE = ["Land", "Flight", "Sea"];
 
 const TRANSLATIONS = {
   commerce: {
-    text: "commerce",
+    text: "Commerce",
   },
   foreigners_inbound: {
-    text: "foreignersInbound",
+    text: "Foreigners Inbound",
   },
   foreigners_outbound: {
-    text: "foreignersOutbound",
+    text: "Foreigners Outbound",
   },
   local: {
-    text: "local",
+    text: "Local",
   },
   nationals_inbound: {
-    text: "nationalsInbound",
+    text: "Nationals Inbound",
   },
   nationals_outbound: {
-    text: "nationalsOutbound",
+    text: "Nationals Outbound",
   },
   stopovers: {
-    text: "stopovers",
+    text: "Stopovers",
   },
   cross_border_workers: {
-    text: "crossBorderWorkers",
+    text: "Cross-border Workers",
   },
 };
 
@@ -160,15 +160,15 @@ const MEASURES = [
 const tabs = [
   {
     id: 1,
-    name: "dailyLife",
+    name: "Daily Life",
   },
   {
     id: 2,
-    name: "mobility",
+    name: "Mobility",
   },
   {
     id: 3,
-    name: "reports",
+    name: "Reports",
   },
 ];
 
@@ -524,7 +524,7 @@ const TransportDetails = (props) => {
             <dd class="ld-travel--val-icon">{travelSea}</dd>
           </div>
         </div>
-        {Object.keys(TRAVEL).map((key, j) => {
+        {Object.keys(TRANSLATIONS).map((key, j) => {
           console.log(key)
           return (
             <div class="ld-travel">
@@ -533,12 +533,11 @@ const TransportDetails = (props) => {
                       `tdo.tabs.mobility.measures.${TRANSLATIONS[key].text}`
                     )} */}
                 {/* {i18n.t( */}
-                {TRANSLATIONS["commerce"].text}
+                {TRANSLATIONS[key].text}
                 {/* )} */}
               </dt>
               <div class="ld-travel--values">
-                {Object.keys(TRAVEL[key]).map((val, i) =>  (
-
+                {Object.keys(TRANSLATIONS[key]).map((val, i) =>  (
                   <dd
                     aria-label={`${TRAVELTYPE[i]}: ${
                       TRAVEL[val]?.toLowerCase() ?? TRAVEL[4].toLowerCase()
@@ -599,7 +598,7 @@ const Reports = (props) => {
   // let { i18n } = _;
   return (
     <div className={`${reports}`}>
-      <h3>{props.i18n.t(`tdo.tabs.reports.subtitle`)}</h3>
+      <h3>{props.i18n.t(`Coming Soon `)}</h3>
       <div className="placeholder"></div>
     </div>
   );
